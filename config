@@ -29,7 +29,7 @@ exec /usr/bin/gnome-keyring-daemon --start --components=pkcs11
 # some programs I use
 exec dropboxd
 exec guake
-exec xautolock -detectsleep -locker 'i3lock -di ~/Bilder/rainbow_dash_wallpaper_by_ancientkale-d3tjto3.png'
+exec xautolock -detectsleep -locker 'i3lock -dti ~/Bilder/rainbow_dash_wallpaper_by_ancientkale-d3tjto3.png'
 exec mpDris2
 
 # open an ncmpcpp with the "ThinkVantaga" Button
@@ -49,7 +49,7 @@ bindsym $mod+Shift+quotedbl kill
 bindsym $ALT+F4 kill
 
 # lock and suspend
-bindsym $mod+F2 exec i3lock -di ~/Bilder/rainbow_dash_wallpaper_by_ancientkale-d3tjto3.png
+bindsym $mod+F2 exec i3lock -ti ~/Bilder/rainbow_dash_wallpaper_by_ancientkale-d3tjto3.png
 bindsym $mod+F4 exec ~/.i3/suspend.sh
 
 # start dmenu (a program launcher)
