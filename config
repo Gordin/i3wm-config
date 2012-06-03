@@ -46,6 +46,7 @@ bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
 bindsym $mod+Shift+quotedbl kill
+bindsym $ALT+F4 kill
 
 # lock and suspend
 bindsym $mod+F2 exec i3lock -di ~/Bilder/rainbow_dash_wallpaper_by_ancientkale-d3tjto3.png
