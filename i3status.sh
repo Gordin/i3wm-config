@@ -1,7 +1,6 @@
-
 #!/bin/sh
 # shell script to add RAM-usage to i3status
-# needs sed and free
+# needs sed, free and bc
 ## config
 # status command has to be this script
 ## i3status.conf
