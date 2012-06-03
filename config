@@ -15,13 +15,25 @@ set $ALT Mod1
 # assign [class="Mozilla Firefox"] → 1
 # assign [class="Gnome-terminal"] → 10
 
-# exec dropboxd
-# exec guake
-exec gnome-session
-exec xautolock -detectsleep -locker 'i3lock -di ~/Bilder/rainbow_dash_wallpaper_by_ancientkale-d3tjto3.png'
-# exec mpDris2
-bindsym XF86Launch1 exec gnome-terminal -t ncmpcpp --profile ncmpcpp -e ncmpcpp
+# some gnome helpers
+exec /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+exec /usr/lib/gnome-settings-daemon/gnome-fallback-mount-helper
+exec /usr/lib/fingerprint-gui/fingerprint-polkit-agent -d
 
+# keyring daemon
+exec /usr/bin/gnome-keyring-daemon --start --components=gpg
+exec /usr/bin/gnome-keyring-daemon --start --components=secrets
+exec /usr/bin/gnome-keyring-daemon --start --components=ssh
+exec /usr/bin/gnome-keyring-daemon --start --components=pkcs11
+
+# some programs I use
+exec dropboxd
+exec guake
+exec xautolock -detectsleep -locker 'i3lock -di ~/Bilder/rainbow_dash_wallpaper_by_ancientkale-d3tjto3.png'
+exec mpDris2
+
+# open an ncmpcpp with the "ThinkVantaga" Button
+bindsym XF86Launch1 exec gnome-terminal -t ncmpcpp --profile ncmpcpp -e ncmpcpp
 
 # font for window titles. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
