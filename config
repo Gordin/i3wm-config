@@ -130,8 +130,8 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # switch to next/previous workspace
-bindsym $mod+$ALT+h workspace previous
-bindsym XF86Back workspace previous
+bindsym $mod+$ALT+h workspace prev
+bindsym XF86Back workspace prev
 bindsym $mod+$ALT+l workspace next
 bindsym XF86Forward workspace next
 
@@ -148,9 +148,9 @@ bindsym $mod+Shift+parenleft move container to workspace 9
 bindsym $mod+Shift+parenright move container to workspace 10
 
 # move focused container to next/previous workspace
-bindsym $mod+$ALT+Shift+h workspace previous
-bindsym Shift+XF86Back move container to workspace previous
-bindsym $mod+XF86Back move container to workspace previous
+bindsym $mod+$ALT+Shift+h workspace prev
+bindsym Shift+XF86Back move container to workspace prev
+bindsym $mod+XF86Back move container to workspace prev
 bindsym $mod+$ALT+Shift+l workspace next
 bindsym Shift+XF86Forward move container to workspace next
 bindsym $mod+XF86Forward move container to workspace next
