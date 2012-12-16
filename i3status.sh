@@ -11,6 +11,8 @@ ETHR1=`cat /sys/class/net/eth0/statistics/rx_bytes`
 ETHT1=`cat /sys/class/net/eth0/statistics/tx_bytes`
 WLANR1=`cat /sys/class/net/wlan0/statistics/rx_bytes`
 WLANT1=`cat /sys/class/net/wlan0/statistics/tx_bytes`
+USBR1=`cat /sys/class/net/usb0/statistics/rx_bytes`
+USBT1=`cat /sys/class/net/usb0/statistics/tx_bytes`
 i3status | while :
 do
     read line
@@ -28,6 +30,21 @@ do
             ETHT1=$ETHT2
             sedeth="s/\(\"name\":\"ethernet\",\"instance\":\"eth0\".*)\)\(\"}\)/\1 D:$ETHRKBPS U:$ETHTKBPS\2/"
             line=`echo $line | sed -e "$sedeth"`
+    fi
+
+    if [ `cat /sys/class/net/usb0/operstate` == "up" ]
+        then
+            USBR2=`cat /sys/class/net/usb0/statistics/rx_bytes`
+            USBT2=`cat /sys/class/net/usb0/statistics/tx_bytes`
+            USBTBPS=`expr $USBT2 - $USBT1`
+            USBRBPS=`expr $USBR2 - $USBR1`
+            USBTKBPS=`expr $USBTBPS / 1024`
+            USBRKBPS=`expr $USBRBPS / 1024`
+
+            USBR1=$USBR2
+            USBT1=$USBT2
+            sedusb="s/\(\"name\":\"ethernet\",\"instance\":\"usb0\".*)\)\(\"}\)/\1 D:$USBRKBPS U:$USBTKBPS\2/"
+            line=`echo $line | sed -e "$sedusb"`
     fi
 
     if [ `cat /sys/class/net/wlan0/operstate` == "up" ]
