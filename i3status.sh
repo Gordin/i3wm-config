@@ -60,6 +60,10 @@ do
         color=00FF00
     fi
 
+    #remove colons
+    colonline='s/\([a-zA-Z]\):/\1/g'
+    line=`echo $line | sed -e "$colonline"`
+
     # put ram_usage before cpu_usage
     sedline="s/cpu_usage/ram_usage\",\"color\":\"#${color}\",\"full_text\":\"RAM: ${free}G\"},{\"name\":\"cpu_usage/"
     final=`echo $line | sed -e "$sedline" | sed -e "s/% \"/%\"/"`
