@@ -14,8 +14,30 @@ set $ALT Mod1
 
 # assign [class="Mozilla Firefox"] → 1
 # assign [class="Gnome-terminal"] → 10
+#
+#
+#
+#
+# OLD STUFF
+#
+# Use gnome-session-properties to add/remove gnome applications at startup
+# See '/usr/share/gnome-session/sessions/i3-gnome.session' to disable:
+# * gnome-settings-daemon (gnome-keyring, ...)
+# * gnome-panel
+# * notification-daemon
+# In '~/.config/i3/config':
+# * use 'exec gnome-session-quit'             : logout
+# * use 'exec gnome-session-quit --power-off' : shutdown menu
+# * use 'exec gnome-screensaver-command -l'   : locks the screen
+# In '~/.xprofile':
+# * add TERMINAL='gnome-terminal' : gnome-terminal as default
+#
+#
+# * use 'exec gnome-session-quit --logout'    : logout dialog
+# * use 'exec gnome-session-quit --power-off' : shutdown menu
+# If you have gnome-screensaver installed and want to use it:
+# * use 'exec gnome-screensaver-command -l'   : locks the screen
 
-exec xautolock -detectsleep -locker 'i3lock -dti ~/Bilder/rainbow_dash_wallpaper_by_ancientkale-d3tjto3.png'
 # some gnome helpers
 #exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
 #exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-fallback-mount-helper
@@ -28,8 +50,12 @@ exec xautolock -detectsleep -locker 'i3lock -dti ~/Bilder/rainbow_dash_wallpaper
 # some programs I use
 # exec dropboxd
 
+# set automatic locking
+exec xautolock -detectsleep -locker 'i3lock -ti ~/Bilder/rainbow_dash_wallpaper_by_ancientkale-d3tjto3.png'
+
 # open an ncmpcpp with the "ThinkVantaga" Button
 bindsym XF86Launch1 exec gnome-terminal -t ncmpcpp --profile ncmpcpp -e ncmpcpp
+
 # controls for Spotify
 bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 bindsym XF86AudioStop exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop
