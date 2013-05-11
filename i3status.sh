@@ -7,12 +7,6 @@
 # showing cpu_usage has to be enabled (because ram_usage is prepended to that with sed...)
 # output_format has to be set to "i3bar"
 
-ETHR1=`cat /sys/class/net/eth0/statistics/rx_bytes`
-ETHT1=`cat /sys/class/net/eth0/statistics/tx_bytes`
-WLANR1=`cat /sys/class/net/wlan0/statistics/rx_bytes`
-WLANT1=`cat /sys/class/net/wlan0/statistics/tx_bytes`
-USBR1=`cat /sys/class/net/usb0/statistics/rx_bytes`
-USBT1=`cat /sys/class/net/usb0/statistics/tx_bytes`
 i3status | while :
 do
     read line
