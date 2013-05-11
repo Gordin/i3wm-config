@@ -11,7 +11,7 @@ i3status | while :
 do
     read line
 
-    if [ `cat /sys/class/net/eth0/operstate` == "up" ]; then
+    if [ -e /sys/class/net/eth0/operstate ] && [ `cat /sys/class/net/eth0/operstate` == "up" ]; then
         ETHR2=`cat /sys/class/net/eth0/statistics/rx_bytes`
         ETHT2=`cat /sys/class/net/eth0/statistics/tx_bytes`
         ETHTBPS=`expr $ETHT2 - $ETHT1`
@@ -25,7 +25,7 @@ do
         line=`echo $line | sed -e "$sedeth"`
     fi
 
-    if [ `cat /sys/class/net/usb0/operstate` == "up" ]; then
+    if [ -e /sys/class/net/usb0/operstate ] && [ `cat /sys/class/net/usb0/operstate` == "up" ]; then
         USBR2=`cat /sys/class/net/usb0/statistics/rx_bytes`
         USBT2=`cat /sys/class/net/usb0/statistics/tx_bytes`
         USBTBPS=`expr $USBT2 - $USBT1`
@@ -39,7 +39,7 @@ do
         line=`echo $line | sed -e "$sedusb"`
     fi
 
-    if [ `cat /sys/class/net/wlan0/operstate` == "up" ]; then
+    if [ -e /sys/class/net/wlan0/operstate ] && [ `cat /sys/class/net/wlan0/operstate` == "up" ]; then
         WLANR2=`cat /sys/class/net/wlan0/statistics/rx_bytes`
         WLANT2=`cat /sys/class/net/wlan0/statistics/tx_bytes`
         WLANTBPS=`expr $WLANT2 - $WLANT1`
