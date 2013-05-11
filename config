@@ -191,6 +191,8 @@ bindsym $mod+Shift+R reload
 bindsym $mod+Shift+P restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+E exit
+# exit gnome
+bindsym $mod+Shift+Q exec gnome-session-quit --power-off
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
