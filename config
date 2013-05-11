@@ -15,22 +15,18 @@ set $ALT Mod1
 # assign [class="Mozilla Firefox"] → 1
 # assign [class="Gnome-terminal"] → 10
 
+exec xautolock -detectsleep -locker 'i3lock -dti ~/Bilder/rainbow_dash_wallpaper_by_ancientkale-d3tjto3.png'
 # some gnome helpers
-exec /usr/lib/gnome-settings-daemon/gnome-settings-daemon
-exec /usr/lib/gnome-settings-daemon/gnome-fallback-mount-helper
-exec /usr/lib/fingerprint-gui/fingerprint-polkit-agent -d
-
-# keyring daemon
-exec /usr/bin/gnome-keyring-daemon --start --components=gpg
-exec /usr/bin/gnome-keyring-daemon --start --components=secrets
-exec /usr/bin/gnome-keyring-daemon --start --components=ssh
-exec /usr/bin/gnome-keyring-daemon --start --components=pkcs11
+#exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+#exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-fallback-mount-helper
+#exec --no-startup-id /usr/lib/fingerprint-gui/fingerprint-polkit-agent -d
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#exec --no-startup-id nm-applet
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#exec xcompmgr
 
 # some programs I use
-exec dropboxd
-exec guake
-exec xautolock -detectsleep -locker 'i3lock -dti ~/Bilder/rainbow_dash_wallpaper_by_ancientkale-d3tjto3.png'
-exec mpDris2
+# exec dropboxd
 
 # open an ncmpcpp with the "ThinkVantaga" Button
 bindsym XF86Launch1 exec gnome-terminal -t ncmpcpp --profile ncmpcpp -e ncmpcpp
