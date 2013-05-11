@@ -65,6 +65,11 @@ bindsym XF86AudioStop exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2
 bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 
+# control Volume with Volume Keys
+bindsym XF86AudioRaiseVolume exec ponymix increase 5
+bindsym XF86AudioLowerVolume exec ponymix decrease 5
+bindsym XF86AudioMute exec ponymix toggle
+
 # font for window titles. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 
