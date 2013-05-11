@@ -53,6 +53,9 @@ set $ALT Mod1
 # set automatic locking
 exec xautolock -detectsleep -locker 'i3lock -ti ~/Bilder/rainbow_dash_wallpaper_by_ancientkale-d3tjto3.png'
 
+# set background image
+exec --no-startup-id nitrogen --save --set-auto /home/gordin/Bilder/rainbow_dash_wallpaper_by_ancientkale-d3tjto3.png 
+
 # open an ncmpcpp with the "ThinkVantaga" Button
 bindsym XF86Launch1 exec gnome-terminal -t ncmpcpp --profile ncmpcpp -e ncmpcpp
 
