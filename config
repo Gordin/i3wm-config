@@ -49,6 +49,10 @@ set $ALT Mod1
 
 # some programs I use
 # exec dropboxd
+exec --no-startup-id sudo nm-applet
+exec --no-startup-id seahorse-daemon
+
+exec --no-startup-id setxkbmap us -variant dvorak-alt-intl -option caps:escape,compose:menu,grp_led:caps,grp:ctrls_toggle
 
 # set automatic locking
 exec xautolock -detectsleep -locker 'i3lock -ti ~/Bilder/rainbow_dash_wallpaper_by_ancientkale-d3tjto3.png'
@@ -71,13 +75,14 @@ bindsym XF86AudioLowerVolume exec ponymix decrease 5
 bindsym XF86AudioMute exec ponymix toggle
 
 # font for window titles. ISO 10646 = Unicode
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font pango:Consolas, Icons 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec ssh-agent lilyterm
+bindsym $mod+Return exec ssh-agent lilyterm -S
 
 # kill focused window
 bindsym $mod+Shift+quotedbl kill
@@ -161,8 +166,10 @@ bindsym $mod+0 workspace 10: music
 
 # switch to next/previous workspace
 bindsym $mod+$ALT+h workspace prev
+bindsym Control+$ALT+h workspace prev
 bindsym XF86Back workspace prev
 bindsym $mod+$ALT+l workspace next
+bindsym Control+$ALT+l workspace prev
 bindsym XF86Forward workspace next
 
 # move focused container to workspace
@@ -194,6 +201,7 @@ bindsym $mod+Shift+E exit
 # exit gnome
 bindsym $mod+Shift+Q exec gnome-session-quit --power-off
 
+bindsym $mod+r mode "resize"
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -218,7 +226,32 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindsym $mod+m mode "Move workspace"
+mode "Move workspace" {
+    bindsym h move workspace to output left
+    bindsym Left move workspace to output left
+    bindsym l move workspace to output right
+    bindsym Right move workspace to output right
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+set $audiomenu "volume:  [+]10%  [-]10%  [m]ute  [r]eset"
+bindsym $mod+F12         mode $audiomenu
+
+mode $audiomenu {
+    bindsym r             exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -- 100%
+    bindsym plus          exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -- +10%
+    bindsym KP_Add        exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -- +10%
+    bindsym minus         exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -- -10%
+    bindsym KP_Subtract   exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -- -10%
+    bindsym m             exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym Return        mode "default"
+    bindsym Escape        mode "default"
+}
+
+
 
 default_orientation auto
 
@@ -233,13 +266,48 @@ focus_follows_mouse no
 
 workspace_auto_back_and_forth yes
 
+# xprop
+# http://i3wm.org/docs/userguide.html#command_criteria
+for_window [title="vCoolor"] floating enable
+for_window [title="TightVNC Options"] floating enable
+for_window [window_role="vlc-playlist"] floating enable
+for_window [class="Chrome" window_role="pop-up"] floating enable
+assign [class="Firefox"] 1: www
+for_window [class="Firefox" instance="DTA"] floating enable
+for_window [class="Firefox" window_role="Preferences"] floating enable
+for_window [class="Firefox" window_role="Options"] floating enable
+for_window [class="Firefox" window_role="About"] floating enable
+for_window [class="Firefox" title="All-in-One Sidebar – Einstellungen"] floating enable
+for_window [class="Firefox" title="Downloads hinzufügen"] floating enable
+for_window [class="Firefox" title="Tree Style Tab Konfiguration"] floating enable
+for_window [class="Thunderbird" title="Gespeicherte Passwörter"] floating enable
+for_window [class="Thunderbird" title="Thunderbird-Einstellungen"] floating enable
+for_window [class="xbmc.bin"] fullscreen
+for_window [class="de-tudresden-inf-rn-zeebus-DataPlayer"] floating enable
+for_window [class="Terminator" title="Terminator Preferences"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+
+
+
+assign [class="Pidgin"] 2: chat
+assign [class="Spotify"] 10: music
+assign [class="Spotify"] 10: music
+
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
     position top
-    status_command ~/.i3/i3status.sh
+    # status_command ~/.i3/i3status.sh
+    # status_command ~/.i3/conky-i3bar
+    status_command python ~/.i3/i3pystatusbar.py
+    # status_command i3blocks
     # font -misc-fixed-medium-r-normal--18-120-100-100-C-90-iso10646-1
+    font pango:Consolas, Icons 10
+    # font pango:FontAwesome 10, Terminus 10
+    # font xft:FontAwesome 10, xft:Consolas 10
+    tray_output LVDS1
     colors {
         background #000000
         statusline #ffffff
